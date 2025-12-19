@@ -1,0 +1,23 @@
+.image-point-stage {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.image-point-img {
+  max-width: 100%;
+  height: auto;
+  cursor: crosshair;
+  border-radius: 12px;
+  display: block;
+}
+
+.image-point-marker {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  background: #a855f7;
+  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.25);
+}

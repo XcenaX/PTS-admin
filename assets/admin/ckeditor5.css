@@ -1,0 +1,174 @@
+/* ----- CKEditor 5 dark theme for admin ----- */
+
+/* Unfold/Tailwind чаще всего включает dark через html.dark.
+   На всякий случай добавлен data-theme="dark". */
+html.dark .ck,
+[data-theme="dark"] .ck {
+  --ck-color-base-background: #0b1220;
+  --ck-color-base-foreground: #0f172a;
+
+  --ck-color-text: #e5e7eb;
+  --ck-color-base-border: #22304a;
+
+  --ck-color-toolbar-background: #0f172a;
+  --ck-color-toolbar-border: #22304a;
+
+  --ck-color-button-default-hover-background: rgba(255,255,255,.06);
+  --ck-color-button-default-active-background: rgba(255,255,255,.10);
+
+  --ck-color-dropdown-panel-background: #0f172a;
+  --ck-color-dropdown-panel-border: #22304a;
+
+  --ck-color-input-background: #0b1220;
+  --ck-color-input-border: #22304a;
+
+  --ck-border-radius: 12px;
+}
+
+/* Основной контейнер/рамки */
+html.dark .ck.ck-editor,
+[data-theme="dark"] .ck.ck-editor {
+  color: var(--ck-color-text);
+}
+
+/* Поле редактирования (белый фон уходит) */
+html.dark .ck.ck-editor__editable_inline,
+[data-theme="dark"] .ck.ck-editor__editable_inline {
+  background: var(--ck-color-base-background) !important;
+  color: var(--ck-color-text) !important;
+  border-color: var(--ck-color-base-border) !important;
+}
+
+/* Панель инструментов */
+html.dark .ck.ck-toolbar,
+[data-theme="dark"] .ck.ck-toolbar {
+  background: var(--ck-color-toolbar-background) !important;
+  border-color: var(--ck-color-toolbar-border) !important;
+}
+
+/* Dropdown панели (Heading и т.п.) */
+html.dark .ck.ck-dropdown__panel,
+[data-theme="dark"] .ck.ck-dropdown__panel {
+  background: var(--ck-color-dropdown-panel-background) !important;
+  border-color: var(--ck-color-dropdown-panel-border) !important;
+}
+
+/* Чтобы в списках/панелях текст не был тёмным */
+html.dark .ck.ck-list__item .ck-button__label,
+[data-theme="dark"] .ck.ck-list__item .ck-button__label {
+  color: var(--ck-color-text) !important;
+}
+
+
+/* ---- Fix active/hover states for dropdown + list items ---- */
+
+html.dark .ck .ck-button,
+[data-theme="dark"] .ck .ck-button {
+  color: var(--ck-color-text) !important;
+}
+
+/* Активная кнопка (ck-on) — сейчас у тебя становится белая */
+html.dark .ck .ck-button.ck-on,
+[data-theme="dark"] .ck .ck-button.ck-on {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: var(--ck-color-text) !important;
+}
+
+/* Hover/Focus для кнопок */
+html.dark .ck .ck-button:hover,
+html.dark .ck .ck-button:focus,
+[data-theme="dark"] .ck .ck-button:hover,
+[data-theme="dark"] .ck .ck-button:focus {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: var(--ck-color-text) !important;
+}
+
+/* Dropdown panel (уже было, но усилим) */
+html.dark .ck .ck-dropdown__panel,
+[data-theme="dark"] .ck .ck-dropdown__panel {
+  background: var(--ck-color-dropdown-panel-background) !important;
+  border-color: var(--ck-color-dropdown-panel-border) !important;
+}
+
+/* Элементы списка внутри dropdown */
+html.dark .ck .ck-list__item .ck-button,
+[data-theme="dark"] .ck .ck-list__item .ck-button {
+  background: transparent !important;
+  color: var(--ck-color-text) !important;
+}
+
+/* Hover у пунктов списка */
+html.dark .ck .ck-list__item .ck-button:hover,
+[data-theme="dark"] .ck .ck-list__item .ck-button:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Активный выбранный пункт (Paragraph) */
+html.dark .ck .ck-list__item .ck-button.ck-on,
+[data-theme="dark"] .ck .ck-list__item .ck-button.ck-on {
+  background: rgba(255, 255, 255, 0.10) !important;
+}
+
+/* Галочка в выбранном пункте */
+html.dark .ck .ck-list-item-button__check-icon,
+[data-theme="dark"] .ck .ck-list-item-button__check-icon {
+  color: var(--ck-color-text) !important;
+}
+
+
+/* ---- CKEditor5 dropdown/list dark fix ---- */
+
+html.dark .ck,
+[data-theme="dark"] .ck {
+  /* list / dropdown colors */
+  --ck-color-list-background: #0f172a;
+  --ck-color-list-button-hover-background: rgba(255,255,255,.06);
+  --ck-color-list-button-on-background: rgba(255,255,255,.10);
+
+  --ck-color-list-button-default-text: #e5e7eb;
+  --ck-color-list-button-hover-text: #e5e7eb;
+  --ck-color-list-button-on-text: #e5e7eb;
+
+  /* sometimes CK uses these too */
+  --ck-color-dropdown-panel-background: #0f172a;
+  --ck-color-dropdown-panel-border: #22304a;
+}
+
+/* panel */
+html.dark .ck.ck-dropdown__panel,
+[data-theme="dark"] .ck.ck-dropdown__panel {
+  background: var(--ck-color-dropdown-panel-background) !important;
+  border-color: var(--ck-color-dropdown-panel-border) !important;
+}
+
+/* ul */
+html.dark .ck.ck-dropdown__panel .ck-list,
+[data-theme="dark"] .ck.ck-dropdown__panel .ck-list {
+  background: var(--ck-color-list-background) !important;
+}
+
+/* li */
+html.dark .ck.ck-dropdown__panel .ck-list__item,
+[data-theme="dark"] .ck.ck-dropdown__panel .ck-list__item {
+  background: transparent !important;
+}
+
+/* buttons inside li */
+html.dark .ck.ck-dropdown__panel .ck-list__item .ck-button,
+[data-theme="dark"] .ck.ck-dropdown__panel .ck-list__item .ck-button {
+  color: var(--ck-color-list-button-default-text) !important;
+  background: transparent !important;
+}
+
+/* hover/active items */
+html.dark .ck.ck-dropdown__panel .ck-list__item .ck-button:hover,
+[data-theme="dark"] .ck.ck-dropdown__panel .ck-list__item .ck-button:hover {
+  background: var(--ck-color-list-button-hover-background) !important;
+  color: var(--ck-color-list-button-hover-text) !important;
+}
+
+html.dark .ck.ck-dropdown__panel .ck-list__item .ck-button.ck-on,
+[data-theme="dark"] .ck.ck-dropdown__panel .ck-list__item .ck-button.ck-on {
+  background: var(--ck-color-list-button-on-background) !important;
+  color: var(--ck-color-list-button-on-text) !important;
+}

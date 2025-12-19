@@ -1,0 +1,36 @@
+msgid ""
+msgstr ""
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Welcome back to"
+msgstr "С возвращением в"
+
+msgid "All applications"
+msgstr "Все вкладки"
+
+msgid "Search apps and models..."
+msgstr "Поиск..."
+
+msgid "Type to search"
+msgstr "Поиск..."
+
+msgid "Filters"
+msgstr "Фильтры"
+
+msgid "Choose file to upload"
+msgstr "Выберите файл"
+
+msgid "Words"
+msgstr "Слова"
+
+msgid "Characters"
+msgstr "Символы"
+
+msgid "Paragraph"
+msgstr "Параграф"
+
+msgid "Heading"
+msgstr "Заголовок"

@@ -1,0 +1,16 @@
+<div class="image-point-widget"
+     data-image-url="{{ widget.image_url }}"
+     data-initial-x="{{ widget.x|default_if_none:'' }}"
+     data-initial-y="{{ widget.y|default_if_none:'' }}">
+
+  <div class="image-point-stage">
+    <img class="image-point-img" src="{{ widget.image_url }}" alt="map">
+    <div class="image-point-marker" hidden></div>
+  </div>
+
+  <input type="hidden" name="{{ widget.name }}" class="image-point-input">
+
+  <div class="image-point-actions">
+    <button type="button" class="button image-point-clear">Очистить точку</button>
+  </div>
+</div>

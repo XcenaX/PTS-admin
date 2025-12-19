@@ -1,0 +1,42 @@
+/* Исправление текста в нижней панели actions (Unfold changelist) */
+#changelist-actions label {
+  color: #fff;
+}
+
+/* Сам select: делаем фон белым, текст тёмным — будет видно сразу */
+#changelist-actions select {
+  color: #111 !important;
+  background: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
+  padding: 6px 10px;
+  line-height: 1.2;
+}
+
+/* В выпадающем списке option тоже принудим читаемые цвета */
+#changelist-actions select option {
+  color: #111 !important;
+  background: #fff !important;
+}
+
+#changelist-actions select:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.6);
+  outline-offset: 2px;
+}
+
+#changelist-actions button[name="index"] {
+  display: inline-flex !important;
+}
+
+.flex.font-medium.gap-2.group.items-center.text-sm.text-primary-600.dark\:text-primary-500{
+    display: none;
+}
+
+.cursor-pointer.flex.items-center.px-6.py-3.text-sm.dark\:text-font-default-dark.hover\:text-primary-600.dark\:hover\:text-primary-500{
+   display: none; 
+}
+
+.inline-block.font-semibold.h-6.leading-6.px-2.rounded-default.uppercase.whitespace-nowrap.bg-red-100.text-red-700{
+    display: none;
+}
+             

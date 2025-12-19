@@ -1,0 +1,135 @@
+{# templates/admin/_dashboard_content.html #}
+<style>
+  .dash-grid { display:grid; gap:16px; grid-template-columns: repeat(12, 1fr); margin-bottom: 20px; }
+  .dash-card { grid-column: span 3; padding:16px; border-radius:16px;
+    background: rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); }
+  .dash-title { font-size:12px; opacity:.75; margin-bottom:8px; }
+  .dash-value { font-size:28px; font-weight:700; line-height:1; }
+  .dash-link { display:inline-block; margin-top:10px; font-size:13px; opacity:.9; }
+
+  .dash-two { grid-column: span 6; padding:16px; border-radius:16px;
+    background: rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); }
+
+  .dash-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top: 8px; }
+  .dash-btn { padding:8px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.06); text-decoration:none; display:inline-flex; gap:8px; align-items:center; }
+  .dash-btn:hover { background: rgba(255,255,255,.10); }
+
+  .dash-table { width:100%; border-collapse: collapse; font-size: 13px; }
+  .dash-table th, .dash-table td { padding:10px 8px; border-bottom:1px solid rgba(255,255,255,.08); text-align:left; }
+  .dash-muted { opacity:.75; }
+
+  .map-wrap { position:relative; border-radius:16px; overflow:hidden; }
+  .map-img { width:100%; height:auto; display:block; background: transparent; }
+  .map-dot {
+    position:absolute; width:12px; height:12px; border-radius:999px;
+    transform: translate(-50%, -50%);
+    background:#a855f7; box-shadow: 0 0 0 4px rgba(168,85,247,.25);
+  }
+  .map-dot:hover { box-shadow: 0 0 0 6px rgba(168,85,247,.30); }
+</style>
+
+<div class="dash-grid">
+
+  <!-- Метрики -->
+  <div class="dash-card">
+    <div class="dash-title">Проекты всего</div>
+    <div class="dash-value">{{ total }}</div>
+    <a class="dash-link" href="{{ changelist_url }}">Открыть список →</a>
+  </div>
+
+  <div class="dash-card">
+    <div class="dash-title">Активные</div>
+    <div class="dash-value">{{ active }}</div>
+    <a class="dash-link" href="{{ link_active }}">Показать активные →</a>
+  </div>
+
+  <div class="dash-card">
+    <div class="dash-title">Без точки на карте</div>
+    <div class="dash-value">{{ no_point }}</div>
+    <a class="dash-link" href="{{ link_no_point }}">Исправить →</a>
+  </div>
+
+  <div class="dash-card">
+    <div class="dash-title">Без обложки (hero)</div>
+    <div class="dash-value">{{ no_hero }}</div>
+    <a class="dash-link" href="{{ link_no_hero }}">Исправить →</a>
+  </div>
+
+  <!-- To-do + быстрые действия -->
+  <div class="dash-two">
+    <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
+      <div>
+        <div style="font-size:16px; font-weight:700;">Что нужно доделать</div>
+        <div class="dash-muted" style="margin-top:4px;">Быстрые фильтры по проблемным проектам</div>
+      </div>
+      <div class="dash-actions">
+        <a class="dash-btn" href="{{ add_url }}">＋ Создать проект</a>
+        <a class="dash-btn" href="{{ changelist_url }}">Открыть проекты</a>
+      </div>
+    </div>
+
+    <ul style="margin:12px 0 0; padding-left:18px;">
+      <li><a href="{{ link_no_point }}">Добавьте точку на карте: {{ no_point }}</a></li>
+      <li><a href="{{ link_no_hero }}">Нет обложки: {{ no_hero }}</a></li>
+      <li><a href="{{ link_no_summary }}">Пустой summary: {{ no_summary }}</a></li>
+      <li><a href="{{ link_no_role }}">Пустая “Наша роль”: {{ no_role }}</a></li>
+    </ul>
+  </div>
+
+  <!-- Последние изменения -->
+  <div class="dash-two">
+    <div style="font-size:16px; font-weight:700;">Последние обновлённые проекты</div>
+    <div class="dash-muted" style="margin-top:4px;">Чтобы быстро продолжить работу</div>
+
+    <table class="dash-table" style="margin-top:10px;">
+      <thead>
+        <tr>
+          <th>Проект</th>
+          <th>Статус</th>
+          <th>Обновлён</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in latest %}
+          <tr>
+            <td>
+              <a href="{% url 'admin:projects_companyproject_change' p.id %}">
+                {{ p.title }}
+              </a>
+            </td>
+            <td>{% if p.is_active %}Активен{% else %}Черновик{% endif %}</td>
+            <td class="dash-muted">{{ p.updated_at|date:"d.m.Y H:i" }}</td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="3" class="dash-muted">Пока нет проектов</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Мини-карта -->
+  <div class="dash-two" style="grid-column: span 12;">
+    <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
+      <div>
+        <div style="font-size:16px; font-weight:700;">Карта проектов</div>
+        <div class="dash-muted" style="margin-top:4px;">Клик по точке откроет проект в админке</div>
+      </div>
+      <div class="dash-actions">
+        <a class="dash-btn" href="{{ changelist_url }}">Все проекты</a>
+        <a class="dash-btn" href="{{ link_no_point }}">Без точки: {{ no_point }}</a>
+      </div>
+    </div>
+
+    <div class="map-wrap" style="margin-top:12px;">
+      <img class="map-img" src="{{ map_image_url }}" alt="map">
+      {% for pt in points %}
+        <a class="map-dot"
+           href="{{ pt.change_url }}"
+           title="{{ pt.title }}"
+           style="left: {{ pt.x_pct }}%; top: {{ pt.y_pct }}%;"></a>
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
