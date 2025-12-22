@@ -41,5 +41,5 @@ msgstr "Запустить"
 msgid "Select all rows"
 msgstr "Выбрать всё"
 
-msgid "Selected Record"
+msgid "Select Record"
 msgstr "Выбрать"
