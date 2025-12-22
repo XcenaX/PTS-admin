@@ -53,6 +53,14 @@ services:
     depends_on:
       - web
 
+  prerender:
+    image: prerender/prerender:latest
+    container_name: pts_prerender
+    restart: unless-stopped
+    environment:
+      - PRERENDER_NUM_ITERATIONS=50 
+      - PRERENDER_NUM_WORKERS=1
+      
   certbot:
     image: certbot/certbot
     restart: unless-stopped
