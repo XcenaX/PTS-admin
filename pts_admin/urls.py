@@ -19,7 +19,7 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path('docs/',  schema_view.with_ui( cache_timeout=0)),
+    path('api/docs/',  schema_view.with_ui(cache_timeout=0)),
 
     path("api/", include("projects.urls")),
     path("ckeditor5/", include("django_ckeditor_5.urls")),
