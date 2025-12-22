@@ -55,12 +55,17 @@ services:
       - prerender
 
   prerender:
-    image: prerender/prerender:latest
+    # Рабочий образ с Chrome и Node
+    image: tvanro/prerender-alpine:latest
     container_name: pts_prerender
     restart: unless-stopped
+    command: node server.js
     environment:
-      - PRERENDER_NUM_ITERATIONS=50 
+      # Важно: включить рендеринг
+      - PRERENDER_NUM_ITERATIONS=50
       - PRERENDER_NUM_WORKERS=1
+      # Если нужно больше логов для отладки
+      - LOG_REQUESTS=true
 
   certbot:
     image: certbot/certbot
