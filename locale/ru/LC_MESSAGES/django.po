@@ -34,3 +34,12 @@ msgstr "Параграф"
 
 msgid "Heading"
 msgstr "Заголовок"
+
+msgid "Run"
+msgstr "Запустить"
+
+msgid "Select all rows"
+msgstr "Выбрать всё"
+
+msgid "Selected Record"
+msgstr "Выбрать"
