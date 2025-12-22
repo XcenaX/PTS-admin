@@ -52,6 +52,7 @@ services:
     command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''
     depends_on:
       - web
+      - prerende
 
   prerender:
     image: prerender/prerender:latest
@@ -60,7 +61,7 @@ services:
     environment:
       - PRERENDER_NUM_ITERATIONS=50 
       - PRERENDER_NUM_WORKERS=1
-      
+
   certbot:
     image: certbot/certbot
     restart: unless-stopped
