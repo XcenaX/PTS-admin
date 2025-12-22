@@ -69,3 +69,11 @@ class CompanyProjectDetailSerializer(serializers.ModelSerializer):
         request = self.context.get("request")
         url = obj.hero_image.url
         return request.build_absolute_uri(url) if request else url
+
+
+class ContactRequestSerializer(serializers.Serializer):
+    full_name = serializers.CharField(max_length=120)
+    email = serializers.EmailField()
+    phone = serializers.CharField(max_length=40, required=False, allow_blank=True)
+    company = serializers.CharField(max_length=120, required=False, allow_blank=True)
+    comment = serializers.CharField(max_length=5000, required=False, allow_blank=True)

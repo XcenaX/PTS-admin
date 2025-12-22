@@ -16,7 +16,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', '')
 
 DEBUG = True if os.getenv('Debug') == "True" else False
 
-ALLOWED_HOSTS = ['testmaster.kz', '82.115.48.24', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ["*"]
 CORS_ORIGIN_ALLOW_ALL = True
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -190,6 +190,15 @@ USE_I18N = True
 
 USE_TZ = True
 
+# Email
+EMAIL_CODE_LENGTH = 6
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+# EMAIL_USE_SSL = False
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
