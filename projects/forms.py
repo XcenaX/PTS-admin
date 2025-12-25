@@ -2,6 +2,7 @@
 from django import forms
 from projects.models import CompanyProject
 from projects.widgets import ImagePointWidget
+from django_ckeditor_5.widgets import CKEditor5Widget
 
 class CompanyProjectAdminForm(forms.ModelForm):
     map_point = forms.JSONField(
@@ -22,6 +23,18 @@ class CompanyProjectAdminForm(forms.ModelForm):
             "x": str(self.instance.map_x) if self.instance.map_x is not None else None,
             "y": str(self.instance.map_y) if self.instance.map_y is not None else None,
         }
+
+        rich_fields = ("summary", "task", "goal", "features", "role_in_project")
+        langs = ("ru", "kk", "en")
+
+        for base in rich_fields:
+            for lang in langs:
+                name = f"{base}_{lang}"
+                if name in self.fields:
+                    self.fields[name].widget = CKEditor5Widget(
+                        attrs={"class": "django_ckeditor_5"},
+                        config_name="default",
+                    )
 
     def clean_map_point(self):
         data = self.cleaned_data.get("map_point") or {}

@@ -1,5 +1,7 @@
 # projects/serializers.py
 from rest_framework import serializers
+
+from projects.fields import ModelTranslationDictField
 from .models import CompanyProject, ProjectImage
 
 
@@ -20,6 +22,8 @@ class ProjectImageSerializer(serializers.ModelSerializer):
 
 class CompanyProjectListSerializer(serializers.ModelSerializer):
     hero_image_url = serializers.SerializerMethodField()
+    title = ModelTranslationDictField("title", source="*", required=False)
+    summary = ModelTranslationDictField("summary", source="*", required=False)
 
     class Meta:
         model = CompanyProject
@@ -35,7 +39,9 @@ class CompanyProjectListSerializer(serializers.ModelSerializer):
 
 class CompanyProjectRelatedSerializer(serializers.ModelSerializer):
     hero_image_url = serializers.SerializerMethodField()
-
+    title = ModelTranslationDictField("title", source="*", required=False)
+    summary = ModelTranslationDictField("summary", source="*", required=False)
+    
     class Meta:
         model = CompanyProject
         fields = ("id", "title", "summary", "hero_image_url")
@@ -52,6 +58,19 @@ class CompanyProjectDetailSerializer(serializers.ModelSerializer):
     hero_image_url = serializers.SerializerMethodField()
     images = ProjectImageSerializer(many=True, read_only=True)
 
+    title = ModelTranslationDictField("title", source="*", required=False)
+    summary = ModelTranslationDictField("summary", source="*", required=False)
+
+    customer = ModelTranslationDictField("customer", source="*", required=False)
+    location = ModelTranslationDictField("location", source="*", required=False)
+    project_type = ModelTranslationDictField("project_type", source="*", required=False)
+
+    task = ModelTranslationDictField("task", source="*", required=False)
+    goal = ModelTranslationDictField("goal", source="*", required=False)
+    features = ModelTranslationDictField("features", source="*", required=False)
+
+    role_in_project = ModelTranslationDictField("role_in_project", source="*", required=False)
+    
     class Meta:
         model = CompanyProject
         fields = (

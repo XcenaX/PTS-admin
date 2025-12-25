@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     "unfold.contrib.forms",
     "unfold.contrib.inlines",
 
+    "modeltranslation",    
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -173,6 +175,9 @@ UNFOLD = {
     },
 }
 
+# Translate
+DEEPL_KEY = os.getenv('DEEPL_KEY', '')
+
 # Locale
 LOCALE_PATHS = [BASE_DIR / "locale"]
 
@@ -181,8 +186,13 @@ LANGUAGE_CODE = "ru"
 
 LANGUAGES = (
     ("ru", "Русский"),
+    ("kk", "Қазақша"),
     ("en", "English"),
 )
+
+MODELTRANSLATION_LANGUAGES = ("ru", "kk", "en")
+MODELTRANSLATION_DEFAULT_LANGUAGE = "ru"
+MODELTRANSLATION_CUSTOM_FIELDS = ("CKEditor5Field",)
 
 TIME_ZONE = 'UTC'
 
