@@ -28,7 +28,7 @@ class CompanyProjectListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CompanyProject
-        fields = ("id", "title", "summary", "hero_image_url")
+        fields = ("id", "title", "summary", "hero_image_url", "hero_video_url")
 
     def get_hero_image_url(self, obj):
         if not obj.hero_image:
@@ -53,7 +53,7 @@ class CompanyProjectRelatedSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = CompanyProject
-        fields = ("id", "title", "summary", "hero_image_url")
+        fields = ("id", "title", "summary", "hero_image_url", "hero_video_url")
 
     def get_hero_image_url(self, obj):
         if not obj.hero_image:
@@ -94,7 +94,7 @@ class CompanyProjectDetailSerializer(serializers.ModelSerializer):
             "id", "title", "summary", 
             "customer", "location", "project_type", "power_mw", 
             "task", "goal", "features", "role_in_project", 
-            "hero_image_url", "images", 
+            "hero_image_url", "hero_video_url", "images", 
             "map_x", "map_y", 
             "created_at", "updated_at",
         )
