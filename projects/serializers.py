@@ -22,6 +22,7 @@ class ProjectImageSerializer(serializers.ModelSerializer):
 
 class CompanyProjectListSerializer(serializers.ModelSerializer):
     hero_image_url = serializers.SerializerMethodField()
+    hero_video_url = serializers.SerializerMethodField()
     title = ModelTranslationDictField("title", source="*", required=False)
     summary = ModelTranslationDictField("summary", source="*", required=False)
 
@@ -36,9 +37,17 @@ class CompanyProjectListSerializer(serializers.ModelSerializer):
         url = obj.hero_image.url
         return request.build_absolute_uri(url) if request else url
 
+    def get_hero_video_url(self, obj):
+        if not obj.hero_video:
+            return None
+        request = self.context.get("request")
+        url = obj.hero_video.url
+        return request.build_absolute_uri(url) if request else url
+
 
 class CompanyProjectRelatedSerializer(serializers.ModelSerializer):
     hero_image_url = serializers.SerializerMethodField()
+    hero_video_url = serializers.SerializerMethodField()
     title = ModelTranslationDictField("title", source="*", required=False)
     summary = ModelTranslationDictField("summary", source="*", required=False)
     
@@ -52,10 +61,18 @@ class CompanyProjectRelatedSerializer(serializers.ModelSerializer):
         request = self.context.get("request")
         url = obj.hero_image.url
         return request.build_absolute_uri(url) if request else url
+    
+    def get_hero_video_url(self, obj):
+        if not obj.hero_video:
+            return None
+        request = self.context.get("request")
+        url = obj.hero_video.url
+        return request.build_absolute_uri(url) if request else url
 
 
 class CompanyProjectDetailSerializer(serializers.ModelSerializer):
     hero_image_url = serializers.SerializerMethodField()
+    hero_video_url = serializers.SerializerMethodField()
     images = ProjectImageSerializer(many=True, read_only=True)
 
     title = ModelTranslationDictField("title", source="*", required=False)
@@ -87,6 +104,13 @@ class CompanyProjectDetailSerializer(serializers.ModelSerializer):
             return None
         request = self.context.get("request")
         url = obj.hero_image.url
+        return request.build_absolute_uri(url) if request else url
+    
+    def get_hero_video_url(self, obj):
+        if not obj.hero_video:
+            return None
+        request = self.context.get("request")
+        url = obj.hero_video.url
         return request.build_absolute_uri(url) if request else url
 
 

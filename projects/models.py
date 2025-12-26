@@ -28,6 +28,7 @@ class CompanyProject(models.Model):
     features = CKEditor5Field("Особенности проекта", config_name="default", blank=True)
 
     hero_image = models.FileField("Главное изображение", upload_to="projects/hero/%Y/%m/", blank=True, null=True)
+    hero_video = models.FileField("Главное видео", upload_to="projects/hero/%Y/%m/", blank=True, null=True)
     is_active = models.BooleanField("Показывать на сайте", default=True)
     sort_order = models.PositiveIntegerField("Порядок", default=0)
 

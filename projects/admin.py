@@ -65,6 +65,7 @@ class CompanyProjectAdmin(ModelAdmin, TabbedTranslationAdmin):
                 "is_active",
                 "sort_order",
                 "hero_image",
+                "hero_video",
             )
         }),
         ("Основное", {"fields": ("customer", "location", "project_type", "power_mw")}),
