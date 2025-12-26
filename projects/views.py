@@ -14,6 +14,7 @@ from django.core.mail import EmailMultiAlternatives
 from .serializers import (
     CompanyProjectListSerializer,
     CompanyProjectDetailSerializer,
+    CompanyProjectPointSerializer,
     CompanyProjectRelatedSerializer,
     ContactRequestSerializer,
 )
@@ -69,20 +70,8 @@ class CompanyProjectPointsView(APIView):
             map_y__isnull=False,
         )
 
-        points = [
-            {
-                "id": p.id,
-                "title": p.title,
-                "customer": p.customer,
-                "location": p.location,
-                "project_type": p.project_type,
-                "power_mw": p.power_mw,
-                "x": float(p.map_x),
-                "y": float(p.map_y),
-            }
-            for p in qs.only("id", "title", "customer", "location", "project_type", "power_mw", "map_x", "map_y")
-        ]
-        return Response({"points": points})
+        serializer = CompanyProjectPointSerializer(qs, many=True, context={"request": request})
+        return Response({"points": serializer.data})
 
 
 class ContactRateThrottle(AnonRateThrottle):

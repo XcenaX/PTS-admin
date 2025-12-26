@@ -96,3 +96,26 @@ class ContactRequestSerializer(serializers.Serializer):
     phone = serializers.CharField(max_length=40, required=False, allow_blank=True)
     company = serializers.CharField(max_length=120, required=False, allow_blank=True)
     comment = serializers.CharField(max_length=5000, required=False, allow_blank=True)
+
+
+class CompanyProjectPointSerializer(serializers.ModelSerializer):
+    title = ModelTranslationDictField("title", source="*", required=False)
+    customer = ModelTranslationDictField("customer", source="*", required=False)
+    location = ModelTranslationDictField("location", source="*", required=False)
+    project_type = ModelTranslationDictField("project_type", source="*", required=False)
+
+    x = serializers.FloatField(source="map_x")
+    y = serializers.FloatField(source="map_y")
+
+    class Meta:
+        model = CompanyProject
+        fields = (
+            "id",
+            "title",
+            "customer",
+            "location",
+            "project_type",
+            "power_mw",
+            "x",
+            "y",
+        )
