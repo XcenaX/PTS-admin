@@ -21,13 +21,13 @@ class CompanyProject(models.Model):
     customer = models.CharField("Заказчик", max_length=200, blank=True)  # Energy China
     location = models.CharField("Расположение", max_length=300, blank=True)  # Туркестанская область...
     project_type = models.CharField("Тип проекта", max_length=250, blank=True)  # Солнечная электростанция, EPC
-    power_mw = models.IntegerField("Мощность, МВт", blank=True, null=True)  # 300.00
+    power_mw = models.DecimalField("Мощность, МВт", max_digits=4, decimal_places=1, blank=True, null=True)  # 300.00
 
     task = CKEditor5Field("Задача",config_name="default", blank=True)
     goal = CKEditor5Field("Цель проекта", config_name="default", blank=True)
     features = CKEditor5Field("Особенности проекта", config_name="default", blank=True)
 
-    hero_image = models.ImageField("Главное изображение", upload_to="projects/hero/%Y/%m/", blank=True, null=True)
+    hero_image = models.FileField("Главное изображение", upload_to="projects/hero/%Y/%m/", blank=True, null=True)
     is_active = models.BooleanField("Показывать на сайте", default=True)
     sort_order = models.PositiveIntegerField("Порядок", default=0)
 
